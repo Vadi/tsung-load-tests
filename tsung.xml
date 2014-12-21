@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE tsung SYSTEM "tsung-1.0.dtd">
+<tsung loglevel="debug" dumptraffic="true">
+
+  <clients>
+    <client host="localhost" cpu="2" maxusers="300"/>
+  </clients>
+
+  <servers>
+    <server host="spock-dev" port="8989" type="tcp"/>
+  </servers>
+
+  <!--
+    <load> tag is based on this 
+    http://tsung.erlang-projects.org/user_manual/conf-load.html
+    
+    during the first 10 minutes of the test, a new user will be created every 30 seconds
+  -->
+  
+  <load>
+    <arrivalphase phase="1" duration="10" unit="minute">
+      <users interarrival="30" unit="second"/>
+    </arrivalphase>
+  </load>
+
+  <sessions>
+    <session name="spock_load" weight="1" type="ts_http">
+      <request>
+          <http url="/6/89/search"
+              contents_from_file="query.json"
+              method="POST"/>
+      </request>
+    </session>
+  </sessions>
+  
+</tsung>

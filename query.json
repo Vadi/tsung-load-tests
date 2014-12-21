@@ -1,0 +1,14 @@
+{
+  "query": "a.aging greater than 1",
+  "pageSize": 100,
+  "pageNumber": 1,
+  "columns": [
+    "w.id",
+    "w.sponsor",
+    "w.number",
+    "w.lossType"
+  ],
+  "sortBy": {
+    "w.number": "desc"
+  }
+}
